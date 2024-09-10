@@ -22,7 +22,7 @@ const Leaderboard = () => {
         style={{ backgroundColor: "#0B0C10" }}
       >
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/" style={{ color: "#66FCF1" }}>
+          <Link className="navbar-brand" to="/">
             Fitoria
           </Link>
           <button

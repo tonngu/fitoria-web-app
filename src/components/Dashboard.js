@@ -2,13 +2,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import LogWorkoutModal from "./LogWorkoutModal";
+import SetGoalsModal from "./SetGoalsModal";
 import { Button } from "react-bootstrap";
 
 const Dashboard = () => {
-  const [showLogWorkout, setShowLogWorkout] = useState(false); // State to control the modal visibility
+  const [showLogWorkout, setShowLogWorkout] = useState(false);
+  const [showSetGoals, setShowSetGoals] = useState(false);
 
   const handleShowWorkoutModal = () => setShowLogWorkout(true);
   const handleCloseWorkoutModal = () => setShowLogWorkout(false);
+  const handleShowSetGoalsModal = () => setShowSetGoals(true);
+  const handleCloseSetGoalsModal = () => setShowSetGoals(false);
   return (
     <div
       className="dashboard d-flex flex-column min-vh-100"
@@ -134,13 +138,13 @@ const Dashboard = () => {
                   >
                     View Workout History
                   </Link>
-                  <Link
-                    to="/set-goals"
+                  <Button
+                    onClick={handleShowSetGoalsModal}
                     className="btn btn-lg"
                     style={{ backgroundColor: "#45A29E", color: "#0B0C10" }}
                   >
                     Set New Goals
-                  </Link>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -183,6 +187,10 @@ const Dashboard = () => {
       <LogWorkoutModal
         show={showLogWorkout}
         handleClose={handleCloseWorkoutModal}
+      />
+      <SetGoalsModal
+        show={showSetGoals}
+        handleClose={handleCloseSetGoalsModal}
       />
     </div>
   );
