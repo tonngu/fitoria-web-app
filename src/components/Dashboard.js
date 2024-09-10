@@ -1,12 +1,21 @@
 // src/components/Dashboard.js
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import LogWorkoutModal from "./LogWorkoutModal";
+import { Button } from "react-bootstrap";
 
 const Dashboard = () => {
+  const [showLogWorkout, setShowLogWorkout] = useState(false); // State to control the modal visibility
+
+  const handleShowWorkoutModal = () => setShowLogWorkout(true);
+  const handleCloseWorkoutModal = () => setShowLogWorkout(false);
   return (
     <div
       className="dashboard d-flex flex-column min-vh-100"
-      style={{ backgroundColor: "#1F2833" }}
+      style={{
+        background: "linear-gradient(to right, #1F2833, #0B0C10)", // Left-to-right gradient effect
+        color: "#C5C6C7",
+      }}
     >
       {/* Navbar */}
       <nav
@@ -93,7 +102,6 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-
         {/* Quick Actions */}
         <div className="row mt-4">
           <div className="col-md-12">
@@ -110,13 +118,15 @@ const Dashboard = () => {
                   Quick Actions
                 </h5>
                 <div className="d-grid gap-2">
-                  <Link
-                    to="/log-workout"
+                  <button
+                    onClick={handleShowWorkoutModal}
                     className="btn btn-lg"
                     style={{ backgroundColor: "#45A29E", color: "#0B0C10" }}
                   >
                     Log New Workout
-                  </Link>
+                  </button>
+                  {/* Keep other buttons as is */}
+
                   <Link
                     to="/view-history"
                     className="btn btn-lg"
@@ -168,6 +178,12 @@ const Dashboard = () => {
       >
         <p>© 2024 Fitoria. All Rights Reserved.</p>
       </footer>
+
+      {/* Workout Log Modal */}
+      <LogWorkoutModal
+        show={showLogWorkout}
+        handleClose={handleCloseWorkoutModal}
+      />
     </div>
   );
 };

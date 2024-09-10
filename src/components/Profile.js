@@ -61,11 +61,7 @@ const Profile = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link
-                  className="nav-link"
-                  to="/logout"
-                  style={{ color: "#C5C6C7" }}
-                >
+                <Link className="nav-link" to="/" style={{ color: "#C5C6C7" }}>
                   Log Out
                 </Link>
               </li>

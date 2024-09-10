@@ -26,13 +26,30 @@ const Homepage = () => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <Link className="nav-link" to="/register">
+                <Link
+                  className="nav-link"
+                  to="/register"
+                  style={{ color: "#C5C6C7" }}
+                >
                   Register
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/dashboard">
+                <Link
+                  className="nav-link"
+                  to="/dashboard"
+                  style={{ color: "#C5C6C7" }}
+                >
                   Login
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link"
+                  to="/leaderboard"
+                  style={{ color: "#C5C6C7" }}
+                >
+                  Leaderboard
                 </Link>
               </li>
             </ul>
