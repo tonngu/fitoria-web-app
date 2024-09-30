@@ -37,7 +37,7 @@ const Homepage = () => {
               <li className="nav-item">
                 <Link
                   className="nav-link"
-                  to="/dashboard"
+                  to="/login"
                   style={{ color: "#C5C6C7" }}
                 >
                   Login

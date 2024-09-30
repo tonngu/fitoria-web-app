@@ -1,41 +1,44 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
-const Registration = () => {
-  const [formData, setFormData] = useState({
+const Login = () => {
+  const [credentials, setCredentials] = useState({
     username: "",
-    email: "",
     password: "",
   });
 
-  const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   // Handle input changes
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Send a POST request to the registration API
+      // Send POST request to login API
       const response = await axios.post(
-        "http://localhost:8080/api/users/register",
-        formData
+        "http://localhost:8080/api/users/login",
+        credentials
       );
-      setSuccessMessage("User registered successfully!");
-      setErrorMessage("");
+
+      // Save user data to local storage for persistence
+      localStorage.setItem("userId", response.data.id);
+      localStorage.setItem("username", response.data.username);
+
+      // Redirect to dashboard on successful login
+      navigate("/dashboard");
     } catch (error) {
-      setErrorMessage("Failed to register user. Please try again.");
-      setSuccessMessage("");
+      setErrorMessage("Invalid username or password. Please try again.");
     }
   };
 
   return (
-    <div className="registration-page d-flex flex-column min-vh-100">
+    <div className="login-page d-flex flex-column min-vh-100">
       {/* Navbar */}
       <nav
         className="navbar navbar-expand-lg navbar-dark"
@@ -70,14 +73,14 @@ const Registration = () => {
         </div>
       </nav>
 
-      {/* Registration Form */}
+      {/* Login Form */}
       <div
-        className="registration-form flex-grow-1 d-flex align-items-center justify-content-center"
+        className="login-form flex-grow-1 d-flex align-items-center justify-content-center"
         style={{ backgroundColor: "#1F2833" }}
       >
         <div className="container">
           <h2 className="text-center mb-4" style={{ color: "#C5C6C7" }}>
-            Create Your Account
+            Login to Your Account
           </h2>
           <div className="row justify-content-center">
             <div className="col-md-6">
@@ -96,26 +99,7 @@ const Registration = () => {
                     id="username"
                     name="username"
                     placeholder="Enter username"
-                    value={formData.username}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="mb-3">
-                  <label
-                    htmlFor="email"
-                    className="form-label"
-                    style={{ color: "#C5C6C7" }}
-                  >
-                    Email address
-                  </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    name="email"
-                    placeholder="Enter email"
-                    value={formData.email}
+                    value={credentials.username}
                     onChange={handleChange}
                     required
                   />
@@ -134,7 +118,7 @@ const Registration = () => {
                     id="password"
                     name="password"
                     placeholder="Enter password"
-                    value={formData.password}
+                    value={credentials.password}
                     onChange={handleChange}
                     required
                   />
@@ -144,14 +128,11 @@ const Registration = () => {
                   className="btn btn-lg"
                   style={{ backgroundColor: "#45A29E", color: "#0B0C10" }}
                 >
-                  Register
+                  Login
                 </button>
               </form>
 
-              {/* Success and Error Messages */}
-              {successMessage && (
-                <p className="mt-3 text-success">{successMessage}</p>
-              )}
+              {/* Error Message */}
               {errorMessage && (
                 <p className="mt-3 text-danger">{errorMessage}</p>
               )}
@@ -171,4 +152,4 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default Login;

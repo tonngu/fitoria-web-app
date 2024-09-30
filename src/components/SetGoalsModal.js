@@ -1,3 +1,5 @@
+//THIS IS CURRENTLY NOT IN USE
+
 // src/components/SetGoalsModal.js
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";

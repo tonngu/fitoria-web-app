@@ -1,4 +1,6 @@
 // src/components/Navbar.js
+
+//THIS IS CURRENTLY NOT IN USE
 import React from "react";
 import { Link } from "react-router-dom";
 
