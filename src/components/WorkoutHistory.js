@@ -3,17 +3,22 @@ import axios from "axios";
 import {
   LineChart,
   Line,
+  BarChart,
+  Bar,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  Legend,
 } from "recharts";
+import { Link } from "react-router-dom";
 
 const ViewHistory = () => {
   const [selectedExercise, setSelectedExercise] = useState("Bench Press"); // Default exercise
   const [timeFrame, setTimeFrame] = useState("3-weeks"); // Default time frame
   const [exerciseData, setExerciseData] = useState([]); // To store exercise history
+  const [exerciseType, setExerciseType] = useState("strength"); // Default exercise type
   const [errorMessage, setErrorMessage] = useState("");
 
   const exercises = [
@@ -23,6 +28,15 @@ const ViewHistory = () => {
     "Running",
     "Cycling",
   ]; // Same exercise list as in LogWorkout
+
+  // Determine if the selected exercise is strength or endurance
+  useEffect(() => {
+    if (["Running", "Cycling"].includes(selectedExercise)) {
+      setExerciseType("endurance");
+    } else {
+      setExerciseType("strength");
+    }
+  }, [selectedExercise]);
 
   // Fetch exercise history based on selected exercise and time frame
   const fetchExerciseHistory = async () => {
@@ -50,9 +64,15 @@ const ViewHistory = () => {
       const response = await axios.get(apiUrl);
       const data = response.data.map((session) => ({
         date: new Date(session.date).toLocaleDateString(),
-        volume: session.reps * session.sets * session.weight, // Calculating volume
+        volume:
+          exerciseType === "strength"
+            ? session.reps * session.sets * session.weight // Volume for strength
+            : null, // Volume is null for endurance exercises
+        duration: exerciseType === "endurance" ? session.duration : null, // Duration for endurance
+        distance: exerciseType === "endurance" ? session.distance : null, // Distance for endurance
       }));
       setExerciseData(data);
+      setErrorMessage("");
     } catch (error) {
       setErrorMessage("Failed to fetch workout history.");
     }
@@ -66,13 +86,30 @@ const ViewHistory = () => {
     <div className="view-history-page d-flex flex-column min-vh-100">
       {/* Navbar */}
       <nav
-        className="navbar navbar-dark"
+        className="navbar navbar-expand-lg navbar-dark"
         style={{ backgroundColor: "#0B0C10" }}
       >
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">
+          <Link className="navbar-brand" to="/">
             Fitoria
-          </a>
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <Link className="nav-link" to="/dashboard">
+                  Dashboard
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
       </nav>
 
@@ -126,15 +163,46 @@ const ViewHistory = () => {
             }}
           >
             {exerciseData.length > 0 ? (
-              <ResponsiveContainer width="100%" height={400}>
-                <LineChart data={exerciseData}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="date" />
-                  <YAxis />
-                  <Tooltip />
-                  <Line type="monotone" dataKey="volume" stroke="#66FCF1" />
-                </LineChart>
-              </ResponsiveContainer>
+              exerciseType === "strength" ? (
+                <ResponsiveContainer width="100%" height={400}>
+                  <LineChart data={exerciseData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="date" />
+                    <YAxis />
+                    <Tooltip />
+                    {/* Line chart for strength exercises */}
+                    <Line
+                      type="monotone"
+                      dataKey="volume" // Plots the volume for strength exercises
+                      stroke="#66FCF1"
+                      strokeWidth={2}
+                      dot={{ fill: "#66FCF1" }} // Optional styling for line chart points
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              ) : (
+                <ResponsiveContainer width="100%" height={400}>
+                  <LineChart data={exerciseData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="date" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line
+                      type="monotone"
+                      dataKey="duration"
+                      stroke="#66FCF1"
+                      name="Duration (min)"
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="distance"
+                      stroke="#45A29E"
+                      name="Distance (km)"
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
+              )
             ) : (
               <p style={{ color: "#C5C6C7" }}>
                 No workout data available for this time frame.
