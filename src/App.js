@@ -10,6 +10,9 @@ import WorkoutHistory from "./components/WorkoutHistory"; // Import the workout 
 import Login from "./components/Login";
 import LogWorkout from "./components/LogWorkout";
 import LogGoal from "./components/LogGoal";
+import LogBodyInfo from "./components/LogBodyInfo";
+import ViewBodyInfoHistory from "./components/ViewBodyInfoHistory";
+import TrainingAdvice from "./components/TrainingAdvice";
 
 const App = () => {
   return (
@@ -21,9 +24,15 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/view-history" element={<WorkoutHistory />} />
+        <Route
+          path="/view-body-info-history"
+          element={<ViewBodyInfoHistory />}
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/log-workout" element={<LogWorkout />} />
         <Route path="/log-goal" element={<LogGoal />} />
+        <Route path="/log-body-info" element={<LogBodyInfo />} />
+        <Route path="/training-advice" element={<TrainingAdvice />} />
       </Routes>
     </Router>
   );

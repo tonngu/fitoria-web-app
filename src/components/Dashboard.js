@@ -85,36 +85,81 @@ const Dashboard = () => {
           </h2>
 
           {/* Quick Actions */}
-          <div className="mt-4">
-            <Link
-              to="/log-workout"
-              className="btn btn-lg mb-3"
-              style={{
-                backgroundColor: "#45A29E",
-                color: "#0B0C10",
-                marginRight: "15px",
-              }}
-            >
-              Log Workout
-            </Link>
-            <Link
-              to="/log-goal"
-              className="btn btn-lg mb-3"
-              style={{
-                backgroundColor: "#45A29E",
-                color: "#0B0C10",
-                marginRight: "15px",
-              }}
-            >
-              Log Goal
-            </Link>
-            <Link
-              to="/view-history"
-              className="btn btn-lg mb-3"
-              style={{ backgroundColor: "#45A29E", color: "#0B0C10" }}
-            >
-              View History
-            </Link>
+          <div className="container mt-4">
+            <div className="row">
+              <div className="col-md-4 mb-3">
+                <Link
+                  to="/log-workout"
+                  className="btn btn-lg w-100"
+                  style={{
+                    backgroundColor: "#45A29E",
+                    color: "#0B0C10",
+                  }}
+                >
+                  Log Workout
+                </Link>
+              </div>
+              <div className="col-md-4 mb-3">
+                <Link
+                  to="/log-goal"
+                  className="btn btn-lg w-100"
+                  style={{
+                    backgroundColor: "#45A29E",
+                    color: "#0B0C10",
+                  }}
+                >
+                  Log Goal
+                </Link>
+              </div>
+              <div className="col-md-4 mb-3">
+                <Link
+                  to="/view-history"
+                  className="btn btn-lg w-100"
+                  style={{
+                    backgroundColor: "#45A29E",
+                    color: "#0B0C10",
+                  }}
+                >
+                  View Workout History
+                </Link>
+              </div>
+              <div className="col-md-4 mb-3">
+                <Link
+                  to="/log-body-info"
+                  className="btn btn-lg w-100"
+                  style={{
+                    backgroundColor: "#45A29E",
+                    color: "#0B0C10",
+                  }}
+                >
+                  Log Body Info
+                </Link>
+              </div>
+              <div className="col-md-4 mb-3">
+                <Link
+                  to="/view-body-info-history"
+                  className="btn btn-lg w-100"
+                  style={{
+                    backgroundColor: "#45A29E",
+                    color: "#0B0C10",
+                  }}
+                >
+                  View Body Info History
+                </Link>
+              </div>
+              <div className="col-md-4 mb-3">
+                <Link
+                  to="/training-advice"
+                  className="btn btn-lg w-100"
+                  style={{
+                    backgroundColor: "#45A29E",
+                    color: "#0B0C10",
+                  }}
+                >
+                  AI Trainer
+                </Link>
+              </div>
+            </div>
           </div>
 
           {/* Display Goals */}
