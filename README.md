@@ -1,70 +1,99 @@
-# Getting Started with Create React App
+# Fitoria Frontend - Workout Journal App 💪📝
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 📋 Table of Contents
+- [Introduction](#introduction)
+- [Tech Stack](#tech-stack)
+- [Screenshots](#screenshots)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Environment Variables](#environment-variables)
+- [Future Improvements](#future-improvements)
+- [License](#license)
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🏋️‍♂️ Introduction
+This repository contains the frontend code for Fitoria, a workout journal and training assistant application. The frontend is built using React, Bootstrap, and Recharts, allowing users to log workouts, track body metrics, and receive AI-powered training advice.
 
-### `npm start`
+## 🛠️ Tech Stack
+- **Frontend**: React, Axios, Bootstrap 5, Recharts
+- **API Integration**: Axios for making requests to the backend
+- **Charts**: Recharts for visualizing workout and body info history
+- **Styling**: Bootstrap 5
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📸 Screenshots (Optional)
+If you have screenshots, you can include them here:
 
-### `npm test`
+![Dashboard Screenshot](path/to/dashboard.png)
+![Workout History Screenshot](path/to/workout-history.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You can add screenshots by saving them in a folder (e.g., `assets/screenshots/`) and referencing them in your `README.md` file.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 💻 Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites
+- Node.js & npm
+- An OpenAI API key (stored in `.env` file)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Step 1: Clone the Repository
+```bash
+git clone https://github.com/yourusername/fitoria-frontend.git
+cd fitoria-frontend
+```
 
-### `npm run eject`
+### Step 2: Install Dependencies
+```bash
+mpm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Step 3: Set Up Environment Variables
+Create a `.env` file in the root directiory with the follow contents:
+```makefile
+REACT_APP_OPENAI_API_KEY=your_openai_api_key
+REACT_APP_BACKEND_URL=http://localhost:8080
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Step 4: Start the Frontend
+```bash
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 📖 Usage
 
-## Learn More
+1. Open your browser and navigate to `http://localhost:3000`.
+2. Register or log in to access the dashboard.
+3. Log workouts and body info.
+4. View historical data and trends through charts.
+5. Get personalized training advice using the AI feature.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## ⚙️ Environment Variables
 
-### Code Splitting
+In your `.env` file, you'll need:
+```makefile
+REACT_APP_OPENAI_API_KEY=your_openai_api_key
+REACT_APP_BACKEND_URL=http://localhost:8080
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Make sure that your `.env` file is added to `.gitignore` to prevent exposing sensitive data.
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🌟 Future Improvements
 
-### Making a Progressive Web App
+- Add a mobile-friendly version using React Native.
+- Implement dark mode and other UI enhancements.
+- Add progress tracking and achievement badges.
+- Integrate a leaderboard feature to compare user progress.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+This project is licensed under the MIT License.
